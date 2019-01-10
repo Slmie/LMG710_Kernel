@@ -401,6 +401,7 @@ CONFIG_DMA_CMA=y
 #
 
 CONFIG_ZRAM=y
+CONFIG_ZRAM_WRITEBACK=y
 
 #
 # Compression
