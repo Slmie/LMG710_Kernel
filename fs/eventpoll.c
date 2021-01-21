@@ -1263,14 +1263,31 @@ static int ep_create_wakeup_source(struct epitem *epi)
 {
 	struct name_snapshot n;
 	struct wakeup_source *ws;
+#ifdef CONFIG_LGE_PM
+	char buf[40] = {0,};
 
+	take_dentry_name_snapshot(&n, epi->ffd.file->f_path.dentry);
+	if (!n.name)
+		sprintf(buf, "eventpoll");
+	else
+		sprintf(buf, "eventpoll-%s", n.name);
+
+	if (!epi->ep->ws) {
+		epi->ep->ws = wakeup_source_register(buf);
+		if (!epi->ep->ws)
+			return -ENOMEM;
+	}
+#else
 	if (!epi->ep->ws) {
 		epi->ep->ws = wakeup_source_register("eventpoll");
 		if (!epi->ep->ws)
 			return -ENOMEM;
 	}
+#endif
 
+#ifndef CONFIG_LGE_PM
 	take_dentry_name_snapshot(&n, epi->ffd.file->f_path.dentry);
+#endif
 	ws = wakeup_source_register(n.name);
 	release_dentry_name_snapshot(&n);
 
