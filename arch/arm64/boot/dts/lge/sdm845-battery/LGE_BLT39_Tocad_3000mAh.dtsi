@@ -22,7 +22,7 @@ qcom,LGE_BLT39_Tocad_3000mAh {
 	qcom,max-voltage-uv = <4400000>;
 	qcom,nom-batt-capacity-mah = <3000>;
 	qcom,fg-cc-cv-threshold-mv = <4390>;
-	qcom,fastchg-current-ma = <2800>;
+	qcom,fastchg-current-ma = <3300>;
 	qcom,batt-id-kohm = <46>;
 	qcom,battery-beta = <4150>;
 	qcom,battery-type = "LGE_BLT39_Tocad_3000mAh";
