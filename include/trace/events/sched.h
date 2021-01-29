@@ -586,7 +586,6 @@ TRACE_EVENT(sched_load_to_gov,
 		__entry->grp_rq_ps	= rq->grp_time.prev_runnable_sum;
 		__entry->nt_ps		= rq->nt_prev_runnable_sum;
 		__entry->grp_nt_ps	= rq->grp_time.nt_prev_runnable_sum;
-		__entry->pl		= rq->walt_stats.pred_demands_sum;
 		__entry->load		= load;
 		__entry->big_task_rotation = big_task_rotation;
 		__entry->sysctl_sched_little_cluster_coloc_fmin_khz =
@@ -1398,11 +1397,6 @@ TRACE_EVENT(sched_load_avg_task,
 		__entry->load_sum		= avg->load_sum;
 		__entry->util_sum		= avg->util_sum;
 		__entry->period_contrib		= avg->period_contrib;
-#ifdef CONFIG_SCHED_WALT
-		__entry->util_avg_walt = ((struct ravg*)_ravg)->demand /
-					 (sched_ravg_window >> SCHED_CAPACITY_SHIFT);
-		__entry->util_avg = __entry->util_avg_walt;
-#endif
 	),
 	TP_printk("comm=%s pid=%d cpu=%d load_avg=%lu util_avg=%lu "
 		  "load_sum=%llu util_sum=%u period_contrib=%u",
