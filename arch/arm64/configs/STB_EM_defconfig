@@ -1519,6 +1519,7 @@ CONFIG_PRINTK_PROCESS=y
 # Compile-time checks and compiler options
 #
 
+# CONFIG_DEBUG_FS is not set
 # CONFIG_DEBUG_INFO is not set
 CONFIG_MAGIC_SYSRQ=y
 
