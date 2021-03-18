@@ -7,6 +7,19 @@ ccflags-y += -Idrivers/gpu/drm/msm/hdmi
 ccflags-$(CONFIG_LGE_PM_PRM) += -Idrivers/soc/qcom/lge/power
 
 msm_drm-y := \
+	dp/dp_usbpd.o \
+	dp/dp_parser.o \
+	dp/dp_power.o \
+	dp/dp_catalog.o \
+	dp/dp_aux.o \
+	dp/dp_panel.o \
+	dp/dp_link.o \
+	dp/dp_ctrl.o \
+	dp/dp_audio.o \
+	dp/dp_debug.o \
+	dp/dp_display.o \
+	dp/dp_drm.o \
+	dp/dp_hdcp2p2.o \
 	sde/sde_crtc.o \
 	sde/sde_encoder.o \
 	sde/sde_encoder_phys_vid.o \
@@ -27,20 +40,6 @@ msm_drm-y := \
 	sde/sde_hw_ad4.o \
 	sde_edid_parser.o \
 	sde_hdcp_1x.o
-
-msm_drm-$(CONFIG_DRM_MSM_DP) += dp/dp_usbpd.o \
-	dp/dp_parser.o \
-	dp/dp_power.o \
-	dp/dp_catalog.o \
-	dp/dp_aux.o \
-	dp/dp_panel.o \
-	dp/dp_link.o \
-	dp/dp_ctrl.o \
-	dp/dp_audio.o \
-	dp/dp_debug.o \
-	dp/dp_display.o \
-	dp/dp_drm.o \
-	dp/dp_hdcp2p2.o
 
 msm_drm-$(CONFIG_DRM_MSM_HDMI) += hdmi/hdmi.o \
 	hdmi/hdmi_audio.o \
