@@ -74,8 +74,11 @@ static void sde_rotator_pm_qos_request(struct sde_rotator_device *rot_dev,
 static long sde_rotator_compat_ioctl32(struct file *file,
 	unsigned int cmd, unsigned long arg);
 #endif
+
+#ifdef CONFIG_DEBUG_FS
 #if IS_ENABLED(CONFIG_LGE_DISPLAY_COMMON)
 extern void sde_rot_dump_enable(bool enable);
+#endif
 #endif
 
 /*
@@ -3568,11 +3571,14 @@ static const void *sde_rotator_get_drv_data(struct device *dev)
 static int panel_dead_state_callback(struct notifier_block *nb,
 					unsigned long val, void *data)
 {
+#ifdef CONFIG_DEBUG_FS
 	struct lge_panel_notifier *evdata = (struct lge_panel_notifier *) data;
+#endif
 
 	if (val != LGE_PANEL_EVENT_RECOVERY)
 		return 0;
 
+#ifdef CONFIG_DEBUG_FS
 	if (evdata) {
 		if (evdata->state == LGE_PANEL_RECOVERY_DEAD) {
 			sde_rot_dump_enable(false);
@@ -3582,6 +3588,7 @@ static int panel_dead_state_callback(struct notifier_block *nb,
 			pr_err("Invalid event state\n");
 		}
 	}
+#endif
 	return 0;
 }
 
